@@ -1,0 +1,61 @@
+## How to install postgree 9.2 in CentoS 6 by phenrique:
+
+## Update your system operacional for best recomendations and packpages##
+- yum update
+
+## Disable SELINUX 
+ setenforce 0
+ vi /etc/selinux/config -  EDIT FOR disabled
+
+## install packpages for optimize installation
+- yum wget vim curl 
+
+## Download POSTGRESQL for REPO customer
+- wget wget https://download.postgresql.org/pub/repos/yum/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-8.noarch.rpm
+
+## Compilation default Packpage
+- rpm -ivh pgdg-centos92-9.2-8.noarch.rpm
+
+## Check software in REPO
+- yum search postgree
+
+## Go install postreclient + postgre Server
+- yum install postgresql92 postgresql92-server
+
+## Start postregre default installation
+- service postgresql-9.2 initdb
+
+## init service postgree
+- service postgresql-9.2 start
+
+## Enable service postgresql in BOOT SYSTEM
+- chkconfig postgresql-9.2 on
+
+## STEP 1 for login postgre
+- su postgres
+
+## Login postgree
+- psql -dpostgres
+
+
+## Others ATTENTION !!!***
+Default PATH: /var/lib/pgsql/9.2/data
+
+## start POSTGRE SERVICE
+- /etc/init.d/postgresql-9.2 start
+
+## STOP POSTGRE
+- /etc/init.d/postgresql-9.2 stop
+
+## VERIFY STATUS POSTGRE
+- /etc/init.d/postgresql-9.2 status
+
+## File config.ini for default in postgresql
+
+- default PATH: /var/lib/pgsql/9.2/data/postgresql.conf
+
+## File config login by users
+- /var/lib/pgsql/9.2/data/pg_hba.conf
+
+## Port default
+5432
