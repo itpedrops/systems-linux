@@ -1,0 +1,13 @@
+How to install 5.5.8
+
+## Download PHP FOR pgfoundry
+- wget http://pgfoundry.org/frs-/download.php/1719/pagila-0.10.1.zi
+
+## Install PHP basics modules
+- sudo yum install php php-gd php-mysql php-mcrypt php-pgsql
+
+## Check version for PHP
+- php -v
+
+## Check and list modules installed for PHP
+- php - m
