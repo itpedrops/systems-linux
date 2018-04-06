@@ -1,0 +1,87 @@
+Instalation do MYSQL  5.5.37 -
+
+## Update your S.O for best recomendations
+- yum -y update
+
+## install softwares for optimize installation
+- yum install vim curl wget
+
+## Download Repo for mysql 5.5.37
+ - wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
+ 
+## Compile packpage latest download
+- rpm -Uvh mysql-community-release-el6-5.noarch.rpm
+
+## install mysql for YUM --
+- yum -y install mysql mysql-server
+
+## Enable service mysql system boot initialiaze
+- chkconfig mysqld on
+
+
+####### ATTENTION, to the following steps refers to a different installation from the default ####### 
+## Create diferente location by msql
+- mkdir /mnt/mysql-data
+
+## Give permission for user mysql
+ chown -R mysql:mysql /mnt/mysql-data/
+ 
+## Disable SELINUX 
+ setenforce 0
+ vi /etc/selinux/config -  EDIT FOR disabled
+
+## Reboot system for confirme disabled SELINUX
+init 6 
+
+## After boot confirm SELINUX
+getenforce 
+ 
+## Init status  
+ service mysqld start
+ 
+## Confirm Version  
+ mysql -v
+
+## SYNC data files for mysql to MOUNT FILE SYSTEM 
+ - cp -R -p /var/lib/mysql/* /mnt/mysql-data
+ 
+## Edit my.cnf to appont new dataDIR 
+   vi /etc/my.cnf - 
+ "{ datadir=/mnt/mysql-data
+socket=/mnt/mysql-data/mysql.sock
+
+[client]
+port=3306
+socket=/mnt/mysql-data/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+#symbolic-links=0
+
+# Recommended in standard MySQL setup
+#sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+ }
+ "
+ 
+ ## UPDATE FOR LIB
+- semanage fcontext -a -t mysqld_db_t "/mnt/mysql-data(/.*)?"
+
+ ## restore SELINUX to mount data file system
+- restorecon -R /mnt/mysql-data
+
+## Aply permission AGAIN in new dataDIR
+ chown -R mysql:mysql /mnt/mysql-data/
+ 
+## Create link symbolic 
+- ln -s /mnt/mysql-data/ /var/lib/mysql
+- ln -s /mnt/mysql-data/ /var/lib/mysql/mysql
+ 
+## vi /etc/my.cnf
+ 
+ 
+datadir=/mnt/mysql-data
+socket=/mnt/mysql-data/mysql.sock
+
+[client]
+port=3306
+socket=/mnt/mysql-data/mysql.sock
