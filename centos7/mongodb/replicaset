@@ -1,0 +1,21 @@
+In config mongo file edit:
+$ vim /etc/mongo.conf
+
+input text:
+$ replication:
+ replSetName: pedrops-replicaset
+ 
+Login in mongo:
+$ mongo
+
+execute:
+$ rs.initiate( {
+   _id : "pedrops-replicaset",
+   members: [
+      { _id: 0, host: "1.1.1.1:27017" },
+      { _id: 1, host: "2.2.2.2:27017" },
+      { _id: 2, host: "3.3.3.3:27017" }
+   ]
+})
+
+ 
