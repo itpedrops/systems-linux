@@ -1,0 +1,8 @@
+use schemaXPTO
+db.createUser(
+   {
+     user: "user-mongo",
+     pwd: "pass-mongo",
+     roles: []
+   }
+);
