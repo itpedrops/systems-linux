@@ -1,0 +1,33 @@
+Create repo:
+$ vim /etc/yum.repos.d/mongodb-org-3.6.repo
+
+Add: 
+[mongodb-org-3.6]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.6/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
+
+
+Update repo:
+$ yum update -y
+
+install mongodb:
+$ sudo yum install -y mongodb-org
+
+start mongo:
+$ sudo service mongod start or /etc/init.d/mongod start
+
+initialize mongo em reboot
+$ sudo chkconfig mongod on
+
+config mongodb
+$ /etc/mongo.conf
+
+using mongo:
+$ mongo
+
+
+#Link reference guide:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-amazon/
